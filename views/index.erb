@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta charset="UTF-8">
+<title>Physics Game</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="/javascripts/application.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+
+
+  <div id="title3">
+
+    <a href="/"><h1>Physics Game</h1></a>
+  </div>
+
+    <!-- <div id="top-bar">
+    <div class="container">
+    <ul>
+      <li><a href="builds">Builds</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="leveling">Leveling</a></li>
+      <li><a href="location">Location Guides</a></li>
+    </ul>
+  </div>
+</div> -->
+
+<div id = "body2">
+<button onclick="start_game()" id = "button">Start Game</button>
+<button onclick="restart()" id = "button2">restart</button>
+<p id = "score"> </p>
+<p id = "term"> </p>
+<p id = "def"></p>
+<p id = "def2"> </p>
+<p id = "def3"> </p>
+<p id = "def4"> </p>
+<div id = 'character'></div>
+<div id = 'character2'></div>
+</div>
+
+
+<!--
+<div id="info1" class="slide">
+  <div class="title">
+    <h1>About</h1>
+    <p>Computers</p>
+  </div>
+</div>
+
+<div id="info2" class="slide">
+  <div class="title">
+    <h1>Video Editing</h1>
+    <p>video</p>
+  </div>
+</div>
+
+<div id="info3" class="slide">
+  <div class="title">
+    <h1>It's almost christmas</h1>
+    <p>bchristmas is fun</p>
+  </div>
+  </div> -->
+
+<!-- <div id="end"></div> -->
+<!--
+<div id="mySidenav" class="sidenav">
+    <div id = "circle"></div>
+    <div id = "circle2"></div>
+    <div id = "circle3"></div>
+    <div id = "circle4"></div>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <span onmouseover="circle()" onmouseout="closeCircle()"><a href="/" id = "sky">Home</a></span>
+  <span onmouseover="circle2()" onmouseout="closeCircle2()"><a href="builds" id = "sky">Builds</a></span>
+  <span onmouseover="circle3()" onmouseout="closeCircle3()"><a href="location" id = "sky">Locations</a></span>
+  <span onmouseover="circle4()" onmouseout="closeCircle4()"><a href="leveling" id = "sky">Leveling</a></span>
+</div> -->
+
+<!-- <div id="main">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div> -->
+
+
+
+<script>
+
+
+
+function closeCircle() {
+    document.getElementById("circle").style.display = "none";
+}
+
+function circle() {
+    document.getElementById("circle").style.display = "block";
+}
+
+function closeCircle2() {
+    document.getElementById("circle2").style.display = "none";
+}
+
+function circle2() {
+    document.getElementById("circle2").style.display = "block";
+}
+
+function closeCircle3() {
+    document.getElementById("circle3").style.display = "none"
+}
+
+function circle3() {
+    document.getElementById("circle3").style.display = "block";
+}
+
+function closeCircle4() {
+    document.getElementById("circle4").style.display = "none"
+}
+
+function circle4() {
+    document.getElementById("circle4").style.display = "block";
+}
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "180px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    document.getElementById("main").style.display = "none";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+    document.getElementById("main").style.display = "block";
+}
+</script>
+
+<script>
+
+
+
+var array = ['Current', 'Voltage', 'Electric Circuit', 'Conductor', 'Insulator', 'Battery', 'Series Circuit', 'Parallel Circuit', 'Electricity', 'Volts', 'Electron', 'Multimeter', 'Coulomb', 'Resistor', 'Voltage Rule', 'Amp', '6.25 * 10^n electrons', 'Energy Leaving Circuit', 'Energy Entering Circuit'];
+var array2 = ['The rate of the flow of energy', 'the difference in electric potential energy between two points per unit electric charge', 'path for electrical current to flow', 'object that permits an electric current to flow easily', 'a material that does not easily transmit energy', 'Device that converts chemical to electrical energy', 'closed circuit in which the current follows one path', 'circuit is divided into two or more paths', 'the flow of charge', 'energy per coulomb', 'charge that carries electricity through circuit', 'electrical measuring tool', 'unit of electric charge', 'reduce current flow', 'Vtotal = V1 + V2 + V3...Vn', 'coulomb per second', 'coulomb', 'sum of voltages from lightbulbs', 'sum of voltages from battery' ];
+var divs = ['def', 'def2', 'def3', 'def4'];
+var id = divs[Math.floor(Math.random() * divs.length)];
+var rand = ''
+
+
+function start_game() {
+
+  document.getElementById("def").style.display = "block";
+  document.getElementById("def2").style.display = "block";
+  document.getElementById("def3").style.display = "block";
+  document.getElementById("def4").style.display = "block";
+  document.getElementById("term").style.display = "block";
+
+  var character = {
+    x: 580,
+    y: 300,
+    speedMultiplier: 4,
+    element: document.getElementById("character")
+  };
+
+  var character2 = {
+    x: 680,
+    y: 305,
+    speedMultiplier: 4,
+    element: document.getElementById("character2")
+  };
+collision1()
+collision()
+
+function collision1() {
+  $(document).ready(function(){
+         var x = $("#character").position();
+         var y = $("#character2").position();
+         var zid = '#' + id
+         var z = $(zid).position();
+         var topX = parseInt(x.top);
+         var topZ = parseInt(z.top);
+         var leftX = parseInt(x.left);
+         var leftZ = parseInt(z.left);
+         var topY = parseInt(y.top);
+         var leftY = parseInt(y.left);
+         if (topX > topZ && topX < (topZ + 40) && leftX > leftZ && leftX < (leftZ + 150)) {
+           alert('Player 1 Won! Click restart to play again.')
+           document.getElementById("button2").style.display = "block";
+           document.getElementById("def").style.display = "none";
+           document.getElementById("def2").style.display = "none";
+           document.getElementById("def3").style.display = "none";
+           document.getElementById("def4").style.display = "none";
+           document.getElementById("term").style.display = "none";
+         }
+     else {
+     collision1()}
+ });}
+
+ function collision() {
+   $(document).ready(function(){
+          var x = $("#character").position();
+          var y = $("#character2").position();
+          var zid = '#' + id
+          var z = $(zid).position();
+          var topX = parseInt(x.top);
+          var topZ = parseInt(z.top);
+          var leftX = parseInt(x.left);
+          var leftZ = parseInt(z.left);
+          var topY = parseInt(y.top);
+          var leftY = parseInt(y.left);
+          if (topY > topZ && topY < (topZ + 40) && leftY > leftZ && leftY < (leftZ + 150)) {
+            alert('Player 2 Won! Click restart to play again.')
+            document.getElementById("button2").style.display = "block";
+            document.getElementById("def").style.display = "none";
+            document.getElementById("def2").style.display = "none";
+            document.getElementById("def3").style.display = "none";
+            document.getElementById("def4").style.display = "none";
+            document.getElementById("term").style.display = "none";
+          }
+      else {
+      collision()}
+  });}
+
+  document.getElementById("button").style.display = "none";
+  document.getElementById("character").style.display = "block";
+  document.getElementById("character2").style.display = "block";
+  var rand = array[Math.floor(Math.random() * array.length)];
+
+  if (rand == 'Current') {
+    document.getElementById(id).innerHTML = 'The rate of the flow of energy';
+    var index2 = array2.indexOf('The rate of the flow of energy');
+    array2.splice(index2, 1);
+    var index3 = divs.indexOf(id);
+    divs.splice(index3, 1);
+  }
+    else if (rand == 'Voltage') {
+      document.getElementById(id).innerHTML = 'the difference in electric potential energy between two points per unit electric charge';
+      var index2 = array2.indexOf('the difference in electric potential energy between two points per unit electric charge');
+      array2.splice(index2, 1);
+      var index3 = divs.indexOf(id);
+      divs.splice(index3, 1);}
+
+    else if (rand == 'Electrical Circuit') {
+      document.getElementById(id).innerHTML = 'path for electrical current to flow';
+      var index2 = array2.indexOf('path for electrical current to flow');
+      array2.splice(index2, 1);
+      var index3 = divs.indexOf(id);
+      divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Conductor') {
+        document.getElementById(id).innerHTML = 'object that permits an electric current to flow easily';
+        var index2 = array2.indexOf('object that permits an electric current to flow easily');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+      else if (rand == 'Insulator') {
+        document.getElementById(id).innerHTML = 'a material that does not easily transmit energy';
+        var index2 = array2.indexOf('a material that does not easily transmit energy');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+      else if (rand == 'Battery') {
+        document.getElementById(id).innerHTML = 'Device that converts chemical to electrical energy';
+        var index2 = array2.indexOf('Device that converts chemical to electrical energy');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+      else if (rand == 'Series Circuit') {
+        document.getElementById(id).innerHTML = 'closed circuit in which the current follows one path';
+        var index2 = array2.indexOf('closed circuit in which the current follows one path');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+      else if (rand == 'Parallel Circuit') {
+        document.getElementById(id).innerHTML = 'circuit is divided into two or more paths';
+        var index2 = array2.indexOf('circuit is divided into two or more paths');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Electricity') {
+        document.getElementById(id).innerHTML = 'the flow of charge';
+        var index2 = array2.indexOf('the flow of charge');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Multimeter') {
+        document.getElementById(id).innerHTML = 'electrical measuring tool';
+        var index2 = array2.indexOf('electrical measuring tool');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+      else if (rand == 'Electron') {
+        document.getElementById(id).innerHTML = 'charge that carries electricity through circuit';
+        var index2 = array2.indexOf('charge that carries electricity through circuit');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Volts') {
+        document.getElementById(id).innerHTML = 'energy per coulomb';
+        var index2 = array2.indexOf('energy per coulomb');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Coulomb') {
+        document.getElementById(id).innerHTML = 'unit of electric charge';
+        var index2 = array2.indexOf('unit of electric charge');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Resistor') {
+        document.getElementById(id).innerHTML = 'reduce current flow';
+        var index2 = array2.indexOf('reduce current flow');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Voltage Rule') {
+        document.getElementById(id).innerHTML = 'Vtotal = V1 + V2 + V3...Vn';
+        var index2 = array2.indexOf('Vtotal = V1 + V2 + V3...Vn');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Amp') {
+        document.getElementById(id).innerHTML = 'coulomb per second';
+        var index2 = array2.indexOf('coulomb per second');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == '6.25 * 10^n electrons') {
+        document.getElementById(id).innerHTML = 'coulomb';
+        var index2 = array2.indexOf('coulomb');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Energy Leaving Circuit') {
+        document.getElementById(id).innerHTML = 'sum of voltages from lightbulbs';
+        var index2 = array2.indexOf('sum of voltages from lightbulbs');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+      else if (rand == 'Energy Entering Circuit') {
+        document.getElementById(id).innerHTML = 'sum of voltages from battery';
+        var index2 = array2.indexOf('sum of voltages from battery');
+        array2.splice(index2, 1);
+        var index3 = divs.indexOf(id);
+        divs.splice(index3, 1);
+      }
+
+  var rand2 = array2[Math.floor(Math.random() * array2.length)];
+  var index6 = array2.indexOf(rand2);
+  array2.splice(index6, 1);
+  var rand3 = array2[Math.floor(Math.random() * array2.length)];
+  var index7 = array2.indexOf(rand3);
+  array2.splice(index7, 1);
+  var rand4 = array2[Math.floor(Math.random() * array2.length)];
+  var id2 = divs[Math.floor(Math.random() * divs.length)];
+  var index4 = divs.indexOf(id2);
+  divs.splice(index4, 1);
+  var id3 = divs[Math.floor(Math.random() * divs.length)];
+  var index5 = divs.indexOf(id3);
+  divs.splice(index5, 1);
+  id4 = divs[Math.floor(Math.random() * divs.length)];
+  document.getElementById(id2).innerHTML = rand2;
+  document.getElementById(id3).innerHTML = rand3;
+  document.getElementById(id4).innerHTML = rand4;
+  document.getElementById("term").innerHTML = rand;
+
+  var keys = {};
+          keys.UP = 38;
+          keys.LEFT = 37;
+          keys.RIGHT = 39;
+          keys.DOWN = 40;
+          keys.W = 87;
+          keys.A = 65;
+          keys.D = 68;
+          keys.S = 83;
+
+      /// store reference to character's position and element
+
+
+      /// key detection (better to use addEventListener, but this will do)
+      document.body.onkeyup =
+      document.body.onkeydown = function(e){
+        /// prevent default browser handling of keypresses
+        if (e.preventDefault) {
+          e.preventDefault();
+        }
+        else {
+          e.returnValue = false;
+        }
+        var kc = e.keyCode || e.which;
+        keys[kc] = e.type == 'keydown';
+      };
+
+      /// character movement update
+      var moveCharacter = function(dx, dy){
+        character.x += (dx||0) * character.speedMultiplier;
+        character.y += (dy||0) * character.speedMultiplier;
+        character.element.style.left = character.x + 'px';
+        character.element.style.top = character.y + 'px';
+      };
+
+   var moveCharacter2 = function(dx, dy){
+        character2.x += (dx||0) * character2.speedMultiplier;
+        character2.y += (dy||0) * character2.speedMultiplier;
+        character2.element.style.left = character2.x + 'px';
+        character2.element.style.top = character2.y + 'px';
+      };
+      /// character control
+      var detectCharacterMovement = function(){
+        if ( keys[keys.LEFT] ) {
+          moveCharacter(-1, 0);
+        }
+        if ( keys[keys.RIGHT] ) {
+          moveCharacter(1, 0);
+        }
+        if ( keys[keys.UP] ) {
+          moveCharacter(0, -1);
+        }
+        if ( keys[keys.DOWN] ) {
+          moveCharacter(0, 1);
+        }
+         if ( keys[keys.A] ) {
+          moveCharacter2(-1, 0);
+        }
+        if ( keys[keys.D] ) {
+          moveCharacter2(1, 0);
+        }
+        if ( keys[keys.W] ) {
+          moveCharacter2(0, -1);
+        }
+        if ( keys[keys.S] ) {
+          moveCharacter2(0, 1);
+        }
+      };
+
+
+      /// update current position on screen
+      moveCharacter();
+      moveCharacter2();
+
+      /// game loop
+      setInterval(function(){
+        detectCharacterMovement();
+      }, 1000/24);
+
+  function getPosition() {
+
+    var elem   = document.getElementById("character");
+  var top = getComputedStyle(elem).getPropertyValue("top");
+
+  getPosition()
+  }
+  getPosition()
+
+
+}
+
+function restart() {
+  document.location.href = "/quiz";
+}
+
+</script>
+
+</body>
+</html>
