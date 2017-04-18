@@ -4,7 +4,7 @@ require_relative 'models/model.rb'
 
 class MyApp < Sinatra::Base
 
-  get '/quiz' do
+  get '/' do
     erb :index
   end
 end
